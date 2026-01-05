@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import {
+    MDBBtn,
+    MDBContainer,
+    MDBRow,
+    MDBCol,
+    MDBCard,
+    MDBCardBody,
+    MDBInput,
+    MDBIcon
+}
+    from 'mdb-react-ui-kit';
 
 const BASE_URL = "https://student-teacher-feedback-system.onrender.com";
 
@@ -10,7 +21,8 @@ const Login = () => {
     const navigate = useNavigate();
 
     const submitHandler = async (e) => {
-        e.preventDefault();
+        // Handle both form submission and button click if needed, though button inside form works best
+        if (e) e.preventDefault();
         try {
             const config = {
                 headers: {
@@ -37,42 +49,86 @@ const Login = () => {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-                <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
-                <form onSubmit={submitHandler}>
-                    <div className="mb-4">
-                        <label className="block text-gray-700">Email Address</label>
-                        <input
-                            type="email"
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Enter email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className="mb-6">
-                        <label className="block text-gray-700">Password</label>
-                        <input
-                            type="password"
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Enter password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
-                    >
-                        Sign In
-                    </button>
-                    <div className="mt-4 text-center">
-                        New here? <Link to="/register" className="text-blue-500">Register</Link>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <MDBContainer fluid className='p-4 background-radial-gradient overflow-hidden' style={{ minHeight: '100vh' }}>
+
+            <MDBRow>
+
+                <MDBCol md='6' className='text-center text-md-start d-flex flex-column justify-content-center'>
+
+                    <h1 className="my-5 display-3 fw-bold ls-tight px-3" style={{ color: 'hsl(218, 81%, 95%)' }}>
+                        Student–Teacher Feedback System <br />
+                        <span style={{ color: 'hsl(218, 81%, 75%)' }}>Empowering classrooms through meaningful feedback</span>
+                    </h1>
+
+                    <p className='px-3' style={{ color: 'hsl(218, 81%, 85%)' }}>
+                        This system provides an integrated environment for students and teachers to exchange feedback, manage class schedules, and receive meaningful insights through automated analysis, enhancing transparency and learning effectiveness.
+                    </p>
+
+                </MDBCol>
+
+                <MDBCol md='6' className='position-relative'>
+
+                    <div id="radius-shape-1" className="position-absolute rounded-circle shadow-5-strong"></div>
+                    <div id="radius-shape-2" className="position-absolute shadow-5-strong"></div>
+
+                    <MDBCard className='my-5 bg-glass'>
+                        <MDBCardBody className='p-5'>
+
+                            <h2 className="mb-4 text-center">Login</h2>
+
+                            <form onSubmit={submitHandler}>
+                                <MDBInput
+                                    wrapperClass='mb-4'
+                                    label='Email'
+                                    id='form3'
+                                    type='email'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                                <MDBInput
+                                    wrapperClass='mb-4'
+                                    label='Password'
+                                    id='form4'
+                                    type='password'
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+
+                                <MDBBtn className='w-100 mb-4' size='md' type='submit'>Login</MDBBtn>
+                            </form>
+
+                            <div className="text-center">
+
+                                <p>New here? <Link to="/register" style={{ color: '#1266f1' }}>Register</Link></p>
+
+                                <p>or login with:</p>
+
+                                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
+                                    <MDBIcon fab icon='facebook-f' size="sm" />
+                                </MDBBtn>
+
+                                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
+                                    <MDBIcon fab icon='twitter' size="sm" />
+                                </MDBBtn>
+
+                                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
+                                    <MDBIcon fab icon='google' size="sm" />
+                                </MDBBtn>
+
+                                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
+                                    <MDBIcon fab icon='github' size="sm" />
+                                </MDBBtn>
+
+                            </div>
+
+                        </MDBCardBody>
+                    </MDBCard>
+
+                </MDBCol>
+
+            </MDBRow>
+
+        </MDBContainer>
     );
 };
 
