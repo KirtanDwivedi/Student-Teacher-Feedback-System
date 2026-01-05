@@ -3,6 +3,7 @@
 A comprehensive web application designed to facilitate feedback, communication, and management between students and teachers. This system includes features for course feedback, timetable management, and intelligent notifications, powered by an AI service for feedback summarization.
 
 site link- https://student-teacher-feedback-system.vercel.app
+UI/UX- https://github.com/KirtanDwivedi/UI-UX--stfs
 
 ## 🚀 Features
 
