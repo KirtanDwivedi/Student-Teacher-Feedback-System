@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
+const BASE_URL = "https://student-teacher-feedback-system.onrender.com";
+
 const FeedbackSummaryPage = () => {
     const { timetableId } = useParams();
     const [summary, setSummary] = useState('');
@@ -17,7 +19,7 @@ const FeedbackSummaryPage = () => {
                     },
                 };
                 const { data } = await axios.get(
-                    `http://localhost:5000/api/feedback/summary/${timetableId}`,
+                    `${BASE_URL}/api/feedback/summary/${timetableId}`,
                     config
                 );
                 setSummary(data.summary);

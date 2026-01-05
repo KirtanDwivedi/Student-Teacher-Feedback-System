@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
+const BASE_URL = "https://student-teacher-feedback-system.onrender.com";
+
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,7 +19,7 @@ const Login = () => {
             };
 
             const { data } = await axios.post(
-                'http://localhost:5000/api/users/login',
+                `${BASE_URL}/api/users/login`,
                 { email, password },
                 config
             );

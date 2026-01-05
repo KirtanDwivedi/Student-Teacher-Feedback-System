@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const BASE_URL = "https://student-teacher-feedback-system.onrender.com";
+
 const NotificationForm = ({ onNotificationSent }) => {
     const [message, setMessage] = useState('');
 
@@ -16,7 +18,7 @@ const NotificationForm = ({ onNotificationSent }) => {
             };
 
             await axios.post(
-                'http://localhost:5000/api/notifications',
+                `${BASE_URL}/api/notifications`,
                 { message },
                 config
             );

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const BASE_URL = "https://student-teacher-feedback-system.onrender.com";
+
 const NotificationList = () => {
     const [notifications, setNotifications] = useState([]);
 
@@ -13,7 +15,7 @@ const NotificationList = () => {
                         Authorization: `Bearer ${userInfo.token}`,
                     },
                 };
-                const { data } = await axios.get('http://localhost:5000/api/notifications', config);
+                const { data } = await axios.get(`${BASE_URL}/api/notifications`, config);
                 setNotifications(data);
             } catch (error) {
                 console.error(error);

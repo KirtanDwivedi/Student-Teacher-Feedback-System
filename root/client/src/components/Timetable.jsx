@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const BASE_URL = "https://student-teacher-feedback-system.onrender.com";
+
 const Timetable = ({ role }) => {
     const [timetable, setTimetable] = useState([]);
     const navigate = useNavigate();
@@ -15,7 +17,7 @@ const Timetable = ({ role }) => {
                         Authorization: `Bearer ${userInfo.token}`,
                     },
                 };
-                const { data } = await axios.get('http://localhost:5000/api/timetable', config);
+                const { data } = await axios.get(`${BASE_URL}/api/timetable`, config);
                 setTimetable(data);
             } catch (error) {
                 console.error(error);

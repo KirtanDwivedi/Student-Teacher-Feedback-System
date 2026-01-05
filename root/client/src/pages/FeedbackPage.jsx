@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
+const BASE_URL = "https://student-teacher-feedback-system.onrender.com";
+
 const FeedbackPage = () => {
     const { timetableId } = useParams();
     const navigate = useNavigate();
@@ -20,7 +22,7 @@ const FeedbackPage = () => {
             };
 
             await axios.post(
-                'http://localhost:5000/api/feedback',
+                `${BASE_URL}/api/feedback`,
                 { timetableId, understood, notUnderstood },
                 config
             );

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
+const BASE_URL = "https://student-teacher-feedback-system.onrender.com";
+
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -19,7 +21,7 @@ const Register = () => {
             };
 
             const { data } = await axios.post(
-                'http://localhost:5000/api/users/register',
+                `${BASE_URL}/api/users/register`,
                 { name, email, password, role },
                 config
             );
