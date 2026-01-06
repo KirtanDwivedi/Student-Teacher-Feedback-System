@@ -1,5 +1,10 @@
 # Student Teacher Feedback System
 
+![Banner](banner.png)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/badge/node-v14+-green.svg)](https://nodejs.org/)
+
 A comprehensive web application designed to facilitate feedback, communication, and management between students and teachers. This system includes features for course feedback, timetable management, and intelligent notifications, powered by an AI service for feedback summarization.
 
 site link- https://student-teacher-feedback-system.vercel.app
