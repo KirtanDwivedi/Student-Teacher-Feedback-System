@@ -11,34 +11,31 @@ const StudentDashboard = () => {
     };
 
     return (
-        <div className="p-4 md:p-8">
-            <header className="max-w-7xl mx-auto flex justify-between items-center mb-12 animate-fadeUp">
-                <div className="space-y-1">
-                    <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Dashboard</h1>
-                    <p className="text-gray-500 font-medium">Welcome back, Student</p>
+        <div className="p-8 md:p-12 lg:p-16 min-h-[90vh]">
+            <header className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-16 animate-fadeUp">
+                <div className="space-y-2">
+                    <h1 className="text-5xl font-extrabold text-white tracking-tight">Student <span className="text-blue-500">Dashboard</span></h1>
+                    <p className="text-gray-400 font-medium">Welcome back. Here is your academic overview.</p>
                 </div>
                 <button
-                    onClick={logoutHandler}
-                    className="px-6 py-2 bg-white border border-gray-200 text-gray-600 rounded-xl font-semibold hover:bg-red-50 hover:text-red-600 hover:border-red-100 transition-all duration-300 shadow-sm"
+                    onClick={() => { localStorage.removeItem('userInfo'); navigate('/login'); }}
+                    className="px-6 py-2.5 bg-white bg-opacity-[0.05] border border-white border-opacity-10 text-white rounded-xl font-bold hover:bg-opacity-[0.1] hover:border-red-500/50 hover:text-red-400 transition-all shadow-xl"
                 >
-                    Logout
+                    Sign Out
                 </button>
             </header>
 
-            <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
                 {/* Timetable Section */}
-                <div className="lg:col-span-2 space-y-6 animate-fadeUp" style={{ animationDelay: '0.1s' }}>
-                    <div className="glass-card p-8 rounded-3xl relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-100 opacity-20 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700"></div>
-                        <h2 className="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-3">
-                            <span className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-sm">📅</span>
-                            Weekly Schedule
-                        </h2>
-                        <div className="relative z-10">
-                            <Timetable role="student" />
-                        </div>
+                <section className="lg:col-span-2 space-y-6 animate-fadeUp" style={{ animationDelay: '0.1s' }}>
+                    <div className="flex items-center gap-3 mb-2">
+                        <div className="w-2 h-8 bg-blue-600 rounded-full"></div>
+                        <h2 className="text-2xl font-bold text-white">Your Weekly Schedule</h2>
                     </div>
-                </div>
+                    <div className="glass-card p-2 rounded-[32px] overflow-hidden">
+                        <Timetable role="student" />
+                    </div>
+                </section>
 
                 {/* Notifications Section */}
                 <div className="animate-fadeUp" style={{ animationDelay: '0.2s' }}>

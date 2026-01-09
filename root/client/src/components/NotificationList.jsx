@@ -34,16 +34,16 @@ const NotificationList = () => {
     }
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-10">
             {notifications.map((notification) => (
                 <div key={notification._id} className="relative group transition-all">
-                    <div className="flex flex-col gap-2">
-                        <p className="text-gray-800 leading-relaxed font-medium">
+                    <div className="flex flex-col gap-4">
+                        <p className="text-gray-300 leading-relaxed font-bold text-lg">
                             {notification.message}
                         </p>
-                        <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-gray-400">
-                            <span className="flex items-center gap-1.5">
-                                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
+                        <div className="flex items-center justify-between text-[9px] font-black uppercase tracking-[0.2em] text-gray-500">
+                            <span className="flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.6)]"></span>
                                 {notification.sender?.name}
                             </span>
                             <span>{new Date(notification.createdAt).toLocaleDateString()}</span>

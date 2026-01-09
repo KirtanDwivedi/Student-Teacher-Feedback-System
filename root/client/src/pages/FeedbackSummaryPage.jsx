@@ -36,51 +36,53 @@ const FeedbackSummaryPage = () => {
     }, [timetableId]);
 
     return (
-        <div className="p-4 md:p-8 flex flex-col items-center">
+        <div className="p-8 md:p-12 lg:p-16 flex flex-col items-center min-h-[90vh]">
             <button
                 onClick={() => navigate(-1)}
-                className="self-start mb-8 flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors font-medium animate-fadeUp"
+                className="self-start mb-12 flex items-center gap-2 text-gray-400 hover:text-white transition-colors font-bold uppercase tracking-widest text-xs animate-fadeUp"
             >
-                ← Back to Console
+                <span className="text-lg">←</span> Back to Dashboard
             </button>
 
-            <div className="w-full max-w-4xl animate-fadeUp" style={{ animationDelay: '0.1s' }}>
-                <div className="glass-card p-10 rounded-3xl shadow-2xl relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+            <div className="w-full max-w-4xl animate-fadeUp">
+                {loading ? (
+                    <div className="glass-card p-24 rounded-[40px] flex flex-col items-center">
+                        <div className="w-16 h-16 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin mb-8"></div>
+                        <p className="text-gray-400 font-bold animate-pulse tracking-widest uppercase text-sm">Synthesizing Feedback...</p>
+                    </div>
+                ) : (
+                    <div className="glass-card rounded-[40px] shadow-2xl overflow-hidden">
+                        <div className="h-2 w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"></div>
 
-                    <header className="mb-10 text-center">
-                        <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-                            AI-Powered Insight
-                        </div>
-                        <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Lecture Synthesis</h1>
-                        <p className="text-gray-500 mt-2">Aggregated student feedback & re-teaching points</p>
-                    </header>
-
-                    {loading ? (
-                        <div className="flex flex-col items-center justify-center py-20 animate-pulse">
-                            <div className="w-12 h-12 bg-gray-200 rounded-full mb-4"></div>
-                            <p className="text-gray-400 font-medium">Analyzing responses...</p>
-                        </div>
-                    ) : (
-                        <div className="space-y-8">
-                            <div className="relative">
-                                <div className="absolute -left-4 top-0 bottom-0 w-1 bg-blue-100 rounded-full"></div>
-                                <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                                    Key Takeaways
-                                </h3>
-                                <div className="bg-white bg-opacity-60 backdrop-blur-sm p-8 rounded-2xl border border-gray-100 shadow-sm leading-relaxed text-gray-700">
-                                    <pre className="whitespace-pre-wrap font-sans text-lg">{summary}</pre>
+                        <div className="p-12 md:p-16 space-y-12">
+                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                                <div className="space-y-2">
+                                    <h2 className="text-4xl font-extrabold text-white tracking-tight italic">AI Synthesis</h2>
+                                    <p className="text-gray-400 font-medium">Automated analysis of recent classroom feedback.</p>
+                                </div>
+                                <div className="px-6 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-black uppercase tracking-tighter">
+                                    Real-time Insight
                                 </div>
                             </div>
 
-                            <div className="flex justify-center pt-8 border-t border-gray-100">
-                                <p className="text-sm text-gray-400">
-                                    Generated automatically based on class submissions.
+                            <div className="bg-white bg-opacity-[0.02] border border-white border-opacity-[0.05] p-10 rounded-[32px] relative group">
+                                <div className="absolute -left-1 top-10 bottom-10 w-2 bg-blue-600 rounded-full shadow-[0_0_15px_rgba(37,99,235,0.5)]"></div>
+                                <p className="text-xl md:text-2xl text-gray-200 leading-relaxed font-medium italic pl-6">
+                                    "{summary}"
                                 </p>
                             </div>
+
+                            <div className="flex justify-center pt-4">
+                                <button
+                                    onClick={() => navigate(-1)}
+                                    className="px-12 py-4 bg-white bg-opacity-[0.05] text-white rounded-2xl font-bold hover:bg-opacity-[0.1] transition-all border border-white border-opacity-10"
+                                >
+                                    Dismiss & Return
+                                </button>
+                            </div>
                         </div>
-                    )}
-                </div>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -39,76 +39,93 @@ const Register = () => {
     };
 
     return (
-        <div className="flex items-center justify-center p-4">
-            <div className="w-full max-w-lg animate-fadeUp relative z-10">
-                <div className="glass-card p-10 rounded-3xl shadow-2xl">
-                    <div className="text-center mb-10">
-                        <h1 className="text-4xl font-extrabold text-gray-900 mb-2">Create Account</h1>
-                        <p className="text-gray-500">Join our modern classroom community</p>
-                    </div>
+        <div className="flex items-center justify-center p-6 min-h-[90vh]">
+            <div className="container max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-16 relative z-10">
 
-                    <form onSubmit={submitHandler} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700 ml-1">Full Name</label>
+                {/* Visual Section (Left side) */}
+                <div className="lg:w-1/2 text-left space-y-8 animate-fadeUp">
+                    <h1 className="text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-tight">
+                        Start your journey <br />
+                        <span className="text-blue-500">with excellence.</span>
+                    </h1>
+                    <p className="text-xl text-gray-400 max-w-xl leading-relaxed">
+                        Join a community dedicated to academic growth. Our platform provides the weightless tools you need to succeed.
+                    </p>
+                    <div className="flex gap-4">
+                        <div className="w-16 h-1.5 bg-blue-600 rounded-full"></div>
+                        <div className="w-6 h-1.5 bg-gray-700 rounded-full"></div>
+                    </div>
+                </div>
+
+                {/* Register Card (Right side) */}
+                <div className="lg:w-1/2 w-full max-w-[540px] animate-fadeUp" style={{ animationDelay: '0.2s' }}>
+                    <div className="glass-card p-12 rounded-[32px] shadow-2xl">
+                        <h2 className="text-3xl font-bold text-white mb-10">Create Account</h2>
+
+                        <form onSubmit={submitHandler} className="space-y-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <input
                                     type="text"
-                                    className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-50 backdrop-blur-sm transition-all outline-none"
-                                    placeholder="John Doe"
+                                    className="input-field"
+                                    placeholder="First name"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     required
                                 />
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700 ml-1">Email</label>
                                 <input
-                                    type="email"
-                                    className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-50 backdrop-blur-sm transition-all outline-none"
-                                    placeholder="john@example.com"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
+                                    type="text"
+                                    className="input-field"
+                                    placeholder="Last name"
                                 />
                             </div>
-                        </div>
 
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700 ml-1">Password</label>
+                            <input
+                                type="email"
+                                className="input-field"
+                                placeholder="Email address"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+
                             <input
                                 type="password"
-                                className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-50 backdrop-blur-sm transition-all outline-none"
-                                placeholder="••••••••"
+                                className="input-field"
+                                placeholder="Create password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
-                        </div>
 
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700 ml-1">Identity</label>
                             <select
-                                className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-50 backdrop-blur-sm transition-all outline-none appearance-none"
+                                className="input-field appearance-none cursor-pointer"
                                 value={role}
                                 onChange={(e) => setRole(e.target.value)}
+                                style={{ color: role ? 'white' : '#6b7280' }}
                             >
-                                <option value="student">Student</option>
-                                <option value="teacher">Teacher</option>
+                                <option value="student" className="bg-slate-900">I am a Student</option>
+                                <option value="teacher" className="bg-slate-900">I am a Teacher</option>
                             </select>
+
+                            <div className="flex items-center gap-3 ml-1 pt-2">
+                                <input
+                                    type="checkbox"
+                                    id="newsletter"
+                                    className="w-4 h-4 rounded border-gray-700 bg-transparent text-blue-600 focus:ring-blue-500/20"
+                                />
+                                <label htmlFor="newsletter" className="text-sm text-gray-400 cursor-pointer">Subscribe to system updates</label>
+                            </div>
+
+                            <button type="submit" className="btn-primary mt-4">
+                                Sign Up
+                            </button>
+                        </form>
+
+                        <div className="mt-10 text-center">
+                            <p className="text-gray-500">
+                                Already have an account? <Link to="/login" className="text-blue-500 font-semibold hover:underline">Sign in</Link>
+                            </p>
                         </div>
-
-                        <button
-                            type="submit"
-                            className="w-full py-4 bg-blue-600 text-white rounded-2xl font-semibold shadow-lg hover:bg-blue-700 hover:shadow-xl hover:-translate-y-1 active:translate-y-0 transition-all duration-300"
-                        >
-                            Get Started
-                        </button>
-                    </form>
-
-                    <div className="mt-8 text-center">
-                        <p className="text-gray-500">
-                            Already have an account? <Link to="/login" className="text-blue-600 font-semibold hover:underline">Sign In</Link>
-                        </p>
                     </div>
                 </div>
             </div>

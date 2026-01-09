@@ -36,57 +36,56 @@ const FeedbackPage = () => {
     };
 
     return (
-        <div className="flex items-center justify-center p-6">
-            <div className="w-full max-w-2xl animate-fadeUp">
-                <div className="glass-card p-10 rounded-3xl shadow-2xl relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-4 opacity-5">
-                        <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" /></svg>
+        <div className="flex items-center justify-center p-8 min-h-[90vh]">
+            <div className="w-full max-w-3xl animate-fadeUp">
+                <div className="glass-card p-12 rounded-[40px] shadow-2xl relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-8 opacity-5">
+                        <span className="text-9xl font-black text-white">FB</span>
                     </div>
 
-                    <h1 className="text-3xl font-extrabold text-gray-900 mb-8 border-b border-gray-100 pb-4">Lecture Feedback</h1>
+                    <div className="flex items-center gap-4 mb-10">
+                        <div className="w-3 h-10 bg-blue-600 rounded-full"></div>
+                        <h2 className="text-4xl font-extrabold text-white tracking-tight">Lecture Feedback</h2>
+                    </div>
 
-                    <form onSubmit={submitHandler} className="space-y-8">
-                        <div className="space-y-3">
-                            <label className="block text-sm font-semibold text-gray-700 tracking-wide">
-                                What did you understand clearly?
-                            </label>
+                    <form onSubmit={submitHandler} className="space-y-8 relative z-10">
+                        <div className="space-y-4">
+                            <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Positive Insights</label>
                             <textarea
-                                className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-50 backdrop-blur-sm transition-all outline-none resize-none shadow-inner"
-                                rows="4"
-                                placeholder="..."
-                                value={understood}
-                                onChange={(e) => setUnderstood(e.target.value)}
+                                className="w-full px-6 py-5 rounded-2xl border border-white border-opacity-10 bg-white bg-opacity-[0.02] focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none resize-none text-gray-200"
+                                rows="3"
+                                placeholder="What parts of the lecture were most helpful?"
+                                value={pros}
+                                onChange={(e) => setPros(e.target.value)}
                                 required
-                            ></textarea>
+                            />
                         </div>
 
-                        <div className="space-y-3">
-                            <label className="block text-sm font-semibold text-gray-700 tracking-wide">
-                                What remains unclear?
-                            </label>
+                        <div className="space-y-4">
+                            <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Areas for Improvement</label>
                             <textarea
-                                className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-50 backdrop-blur-sm transition-all outline-none resize-none shadow-inner"
-                                rows="4"
-                                placeholder="..."
-                                value={notUnderstood}
-                                onChange={(e) => setNotUnderstood(e.target.value)}
+                                className="w-full px-6 py-5 rounded-2xl border border-white border-opacity-10 bg-white bg-opacity-[0.02] focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none resize-none text-gray-200"
+                                rows="3"
+                                placeholder="What could be explained more clearly?"
+                                value={cons}
+                                onChange={(e) => setCons(e.target.value)}
                                 required
-                            ></textarea>
+                            />
                         </div>
 
                         <div className="flex gap-4 pt-4">
                             <button
                                 type="button"
                                 onClick={() => navigate(-1)}
-                                className="px-8 py-4 bg-gray-50 text-gray-600 rounded-2xl font-semibold hover:bg-gray-100 transition-all border border-gray-100"
+                                className="flex-1 py-4 bg-white bg-opacity-[0.05] border border-white border-opacity-10 text-white rounded-2xl font-bold hover:bg-opacity-[0.1] transition-all"
                             >
-                                Back
+                                Cancel
                             </button>
                             <button
                                 type="submit"
-                                className="flex-1 py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-lg hover:bg-blue-700 hover:shadow-xl hover:-translate-y-1 active:translate-y-0 transition-all duration-300"
+                                className="flex-[2] py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-xl shadow-blue-500/10 hover:bg-blue-700 hover:-translate-y-1 active:translate-y-0 transition-all"
                             >
-                                Submit Observations
+                                Submit Feedback
                             </button>
                         </div>
                     </form>

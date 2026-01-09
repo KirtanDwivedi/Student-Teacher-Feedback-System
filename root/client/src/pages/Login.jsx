@@ -37,36 +37,36 @@ const Login = () => {
     };
 
     return (
-        <div className="flex items-center justify-center p-4">
-            <div className="container max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
+        <div className="flex items-center justify-center p-6 min-h-[90vh]">
+            <div className="container max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-16 relative z-10">
 
-                {/* Brand Section */}
-                <div className="md:w-1/2 text-center md:text-left space-y-6 animate-fadeUp">
-                    <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight">
-                        Student–Teacher <br />
-                        <span className="text-blue-600">Feedback System</span>
+                {/* Brand Section (Left side - following reference) */}
+                <div className="lg:w-1/2 text-left space-y-8 animate-fadeUp">
+                    <h1 className="text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-tight">
+                        The smart system <br />
+                        <span className="text-blue-500">for your classroom</span>
                     </h1>
-                    <p className="text-lg text-gray-600 max-w-md">
-                        Empowering classrooms through meaningful feedback and automated insights. A calm, weightless experience for modern education.
+                    <p className="text-xl text-gray-400 max-w-xl leading-relaxed">
+                        Gather meaningful insights, automate feedback summaries, and bridge the gap between teaching and learning through a weightless, premium interface.
                     </p>
-                    <div className="flex gap-4 justify-center md:justify-start">
-                        <div className="w-12 h-1 bg-blue-600 rounded-full"></div>
-                        <div className="w-4 h-1 bg-blue-200 rounded-full"></div>
+                    <div className="flex gap-4">
+                        <div className="w-16 h-1.5 bg-blue-600 rounded-full"></div>
+                        <div className="w-6 h-1.5 bg-gray-700 rounded-full"></div>
                     </div>
                 </div>
 
-                {/* Login Card */}
-                <div className="md:w-1/2 w-full max-w-md animate-fadeUp" style={{ animationDelay: '0.2s' }}>
-                    <div className="glass-card p-10 rounded-3xl transform hover:scale-[1.01] transition-all duration-500">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Welcome Back</h2>
+                {/* Login Card (Right side - following reference) */}
+                <div className="lg:w-1/2 w-full max-w-[480px] animate-fadeUp" style={{ animationDelay: '0.2s' }}>
+                    <div className="glass-card p-12 rounded-[32px] transform transition-all duration-500">
+                        <h2 className="text-3xl font-bold text-white mb-10 text-center lg:text-left">Sign In</h2>
 
                         <form onSubmit={submitHandler} className="space-y-6">
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700 ml-1">Email Address</label>
+                                <label className="hidden">Email Address</label>
                                 <input
                                     type="email"
-                                    className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-50 backdrop-blur-sm transition-all outline-none"
-                                    placeholder="name@example.com"
+                                    className="input-field"
+                                    placeholder="Email address"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
@@ -74,46 +74,51 @@ const Login = () => {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700 ml-1">Password</label>
+                                <label className="hidden">Password</label>
                                 <input
                                     type="password"
-                                    className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-50 backdrop-blur-sm transition-all outline-none"
-                                    placeholder="••••••••"
+                                    className="input-field"
+                                    placeholder="Password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
                                 />
                             </div>
 
-                            <button
-                                type="submit"
-                                className="w-full py-4 bg-gray-900 text-white rounded-2xl font-semibold shadow-lg hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 transition-all duration-300"
-                            >
+                            <div className="flex items-center gap-3 ml-1">
+                                <input
+                                    type="checkbox"
+                                    id="remember"
+                                    className="w-4 h-4 rounded border-gray-700 bg-transparent text-blue-600 focus:ring-blue-500/20"
+                                />
+                                <label htmlFor="remember" className="text-sm text-gray-400 cursor-pointer">Remember my session</label>
+                            </div>
+
+                            <button type="submit" className="btn-primary">
                                 Sign In
                             </button>
                         </form>
 
-                        <div className="mt-8 text-center space-y-6">
-                            <p className="text-gray-500">
-                                New here? <Link to="/register" className="text-blue-600 font-semibold hover:underline">Create an account</Link>
-                            </p>
-
+                        <div className="mt-10 text-center space-y-8">
                             <div className="relative">
-                                <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-100"></div></div>
-                                <div className="relative flex justify-center text-xs uppercase"><span className="bg-white px-2 text-gray-400">Or continue with</span></div>
+                                <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-white border-opacity-5"></div></div>
+                                <div className="relative flex justify-center text-xs uppercase"><span className="bg-transparent px-4 text-gray-500 tracking-widest font-semibold">Or sign in with</span></div>
                             </div>
 
-                            <div className="flex justify-center gap-4">
-                                {['google', 'github', 'facebook'].map((platform) => (
-                                    <button key={platform} className="p-3 rounded-xl bg-gray-50 hover:bg-white hover:shadow-md hover:scale-110 transition-all duration-300 border border-gray-200 uppercase text-[10px] font-bold tracking-wider">
-                                        {platform}
+                            <div className="flex justify-center gap-8">
+                                {['google', 'github', 'twitter', 'facebook'].map((platform) => (
+                                    <button key={platform} className="text-gray-500 hover:text-white transition-all duration-300 transform hover:scale-125">
+                                        <span className="uppercase text-[10px] font-black tracking-tighter">{platform[0]}</span>
                                     </button>
                                 ))}
                             </div>
+
+                            <p className="text-gray-500 text-sm">
+                                Not a member? <Link to="/register" className="text-blue-500 font-semibold hover:underline">Register now</Link>
+                            </p>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     );

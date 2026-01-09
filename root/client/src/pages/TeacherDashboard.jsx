@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Timetable from '../components/Timetable';
 import NotificationForm from '../components/NotificationForm';
@@ -6,77 +6,65 @@ import NotificationList from '../components/NotificationList';
 
 const TeacherDashboard = () => {
     const navigate = useNavigate();
-    const logoutHandler = () => {
-        localStorage.removeItem('userInfo');
-        navigate('/login');
-    };
+    const [refreshNotifications, setRefreshNotifications] = useState(0);
+
+    const fetchNotifications = useCallback(() => {
+        setRefreshNotifications(prev => prev + 1);
+    }, []);
 
     return (
-        <div className="p-4 md:p-8">
-            <header className="max-w-7xl mx-auto flex justify-between items-center mb-12 animate-fadeUp">
-                <div className="space-y-1">
-                    <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Faculty Console</h1>
-                    <p className="text-gray-500 font-medium">Class Management & Analytics</p>
+        <div className="p-8 md:p-12 lg:p-16 min-h-[90vh]">
+            <header className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-16 animate-fadeUp">
+                <div className="space-y-2">
+                    <h1 className="text-5xl font-extrabold text-white tracking-tight">Faculty <span className="text-purple-500">Console</span></h1>
+                    <p className="text-gray-400 font-medium">Optimize your teaching with automated class insights.</p>
                 </div>
                 <button
-                    onClick={logoutHandler}
-                    className="px-6 py-2 bg-white border border-gray-200 text-gray-600 rounded-xl font-semibold hover:bg-red-50 hover:text-red-600 hover:border-red-100 transition-all duration-300 shadow-sm"
+                    onClick={() => { localStorage.removeItem('userInfo'); navigate('/login'); }}
+                    className="px-6 py-2.5 bg-white bg-opacity-[0.05] border border-white border-opacity-10 text-white rounded-xl font-bold hover:bg-opacity-[0.1] hover:border-red-500/50 hover:text-red-400 transition-all shadow-xl"
                 >
-                    Logout
+                    Sign Out
                 </button>
             </header>
 
-            <div className="max-w-7xl mx-auto space-y-8">
-                {/* Top Section: Schedule and Quick Actions */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* Schedule */}
-                    <div className="lg:col-span-2 animate-fadeUp" style={{ animationDelay: '0.1s' }}>
-                        <div className="glass-card p-8 rounded-3xl h-full">
-                            <h2 className="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-3">
-                                <span className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-sm">📅</span>
-                                Teaching Schedule
-                            </h2>
+            <main className="max-w-7xl mx-auto space-y-12">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                    {/* Schedule Section */}
+                    <section className="lg:col-span-2 space-y-6 animate-fadeUp" style={{ animationDelay: '0.1s' }}>
+                        <div className="flex items-center gap-3 mb-2">
+                            <div className="w-2 h-8 bg-blue-600 rounded-full"></div>
+                            <h2 className="text-2xl font-bold text-white">Academic Schedule</h2>
+                        </div>
+                        <div className="glass-card p-2 rounded-[32px] overflow-hidden">
                             <Timetable role="teacher" />
                         </div>
-                    </div>
+                    </section>
 
-                    {/* Quick Notifications */}
-                    <div className="animate-fadeUp" style={{ animationDelay: '0.2s' }}>
-                        <div className="glass-card p-8 rounded-3xl h-full border-t-4 border-t-blue-500">
-                            <h2 className="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-3">
-                                <span className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-sm">📢</span>
-                                Broadcast
-                            </h2>
-                            <NotificationForm onNotificationSent={() => window.location.reload()} />
-
-                            <div className="mt-8 border-t border-gray-100 pt-6">
-                                <h3 className="font-bold mb-4 text-gray-700 flex items-center justify-between">
-                                    Recent History
-                                    <span className="text-[10px] bg-gray-100 px-2 py-0.5 rounded-full uppercase tracking-tighter">Live</span>
-                                </h3>
-                                <div className="max-h-64 overflow-y-auto pr-2 custom-scrollbar">
-                                    <NotificationList />
-                                </div>
-                            </div>
+                    {/* Broadcast Section */}
+                    <section className="space-y-6 animate-fadeUp" style={{ animationDelay: '0.2s' }}>
+                        <div className="flex items-center gap-3 mb-2">
+                            <div className="w-2 h-8 bg-blue-500 rounded-full"></div>
+                            <h2 className="text-2xl font-bold text-white">Class Broadcast</h2>
                         </div>
-                    </div>
+                        <div className="glass-card p-8 rounded-[32px]">
+                            <NotificationForm onNotificationSent={fetchNotifications} />
+                            <NotificationList key={refreshNotifications} />
+                        </div>
+                    </section>
                 </div>
 
-                {/* Bottom Section: Feedback Insights */}
-                <div className="animate-fadeUp" style={{ animationDelay: '0.3s' }}>
-                    <div className="glass-card p-8 rounded-3xl bg-opacity-40">
-                        <h2 className="text-2xl font-bold mb-4 text-gray-800 flex items-center gap-3">
-                            <span className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 text-sm">🧠</span>
-                            Class Intelligence
-                        </h2>
-                        <div className="bg-white bg-opacity-50 p-6 rounded-2xl border border-dashed border-gray-200 text-center">
-                            <p className="text-gray-500 font-medium italic">
-                                Select a specific lecture from your schedule above to view AI-summarized student feedback.
-                            </p>
-                        </div>
+                {/* Intelligence Section */}
+                <section className="animate-fadeUp" style={{ animationDelay: '0.3s' }}>
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="w-2 h-8 bg-purple-600 rounded-full"></div>
+                        <h2 className="text-2xl font-bold text-white">Class Intelligence</h2>
                     </div>
-                </div>
-            </div>
+                    <div className="glass-card p-16 rounded-[40px] flex flex-col items-center justify-center border-2 border-dashed border-white border-opacity-5">
+                        <span className="text-5xl mb-6 opacity-40">📊</span>
+                        <p className="text-gray-500 font-medium text-lg text-center">Select a class from your schedule to view analytical summaries.</p>
+                    </div>
+                </section>
+            </main>
         </div>
     );
 };
