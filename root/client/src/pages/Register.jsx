@@ -1,3 +1,6 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
 import BASE_URL from '../config';
 
 const Register = () => {
@@ -163,8 +166,8 @@ const Register = () => {
                                                 type="button"
                                                 onClick={() => setRole('student')}
                                                 className={`py-3 px-4 rounded-xl font-medium transition-all ${role === 'student'
-                                                        ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/25'
-                                                        : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10'
+                                                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/25'
+                                                    : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10'
                                                     }`}
                                             >
                                                 Student
@@ -173,8 +176,8 @@ const Register = () => {
                                                 type="button"
                                                 onClick={() => setRole('teacher')}
                                                 className={`py-3 px-4 rounded-xl font-medium transition-all ${role === 'teacher'
-                                                        ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/25'
-                                                        : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10'
+                                                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/25'
+                                                    : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10'
                                                     }`}
                                             >
                                                 Teacher
