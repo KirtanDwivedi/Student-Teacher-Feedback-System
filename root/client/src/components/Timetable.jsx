@@ -28,51 +28,64 @@ const Timetable = ({ role }) => {
     }, []);
 
     if (timetable.length === 0) {
-        return <p className="text-gray-500">No classes scheduled.</p>;
+        return (
+            <div className="flex flex-col items-center justify-center py-12 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-100">
+                <span className="text-4xl mb-3">📭</span>
+                <p className="text-gray-400 font-medium">No classes scheduled yet.</p>
+            </div>
+        );
     }
 
     return (
-        <div className="overflow-x-auto">
-            <table className="min-w-full bg-white border border-gray-200">
-                <thead>
-                    <tr className="bg-gray-100">
-                        <th className="py-2 px-4 border-b text-left">Day</th>
-                        <th className="py-2 px-4 border-b text-left">Period</th>
-                        <th className="py-2 px-4 border-b text-left">Subject</th>
-                        <th className="py-2 px-4 border-b text-left">Room</th>
-                        {role === 'student' && <th className="py-2 px-4 border-b text-left">Teacher</th>}
-                        <th className="py-2 px-4 border-b text-left">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {timetable.map((entry) => (
-                        <tr key={entry._id} className="hover:bg-gray-50">
-                            <td className="py-2 px-4 border-b">{entry.day}</td>
-                            <td className="py-2 px-4 border-b">{entry.period}</td>
-                            <td className="py-2 px-4 border-b">{entry.subject}</td>
-                            <td className="py-2 px-4 border-b">{entry.room}</td>
-                            {role === 'student' && <td className="py-2 px-4 border-b">{entry.teacher?.name}</td>}
-                            <td className="py-2 px-4 border-b">
-                                {role === 'student' ? (
-                                    <button
-                                        onClick={() => navigate(`/feedback/${entry._id}`)}
-                                        className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
-                                    >
-                                        Give Feedback
-                                    </button>
-                                ) : (
-                                    <button
-                                        onClick={() => navigate(`/feedback-summary/${entry._id}`)}
-                                        className="bg-purple-500 text-white px-3 py-1 rounded hover:bg-purple-600"
-                                    >
-                                        View Summary
-                                    </button>
-                                )}
-                            </td>
+        <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+            <div className="overflow-x-auto">
+                <table className="min-w-full bg-white divide-y divide-gray-100">
+                    <thead>
+                        <tr className="bg-gray-50 bg-opacity-50">
+                            <th className="py-4 px-6 text-left text-xs font-bold text-gray-400 uppercase tracking-widest">Day</th>
+                            <th className="py-4 px-6 text-left text-xs font-bold text-gray-400 uppercase tracking-widest">Period</th>
+                            <th className="py-4 px-6 text-left text-xs font-bold text-gray-400 uppercase tracking-widest">Subject</th>
+                            <th className="py-4 px-6 text-left text-xs font-bold text-gray-400 uppercase tracking-widest">Room</th>
+                            {role === 'student' && <th className="py-4 px-6 text-left text-xs font-bold text-gray-400 uppercase tracking-widest">Teacher</th>}
+                            <th className="py-4 px-6 text-right text-xs font-bold text-gray-400 uppercase tracking-widest">Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody className="divide-y divide-gray-50">
+                        {timetable.map((entry) => (
+                            <tr key={entry._id} className="hover:bg-blue-50 transition-colors group">
+                                <td className="py-4 px-6 text-sm font-semibold text-gray-700">{entry.day}</td>
+                                <td className="py-4 px-6 text-sm text-gray-600">
+                                    <span className="px-2 py-1 bg-gray-100 rounded-md text-[10px] font-bold text-gray-500 uppercase">{entry.period}</span>
+                                </td>
+                                <td className="py-4 px-6 text-sm font-bold text-gray-900">{entry.subject}</td>
+                                <td className="py-4 px-6 text-sm text-gray-500">{entry.room}</td>
+                                {role === 'student' && (
+                                    <td className="py-4 px-6 text-sm text-gray-600 font-medium">
+                                        {entry.teacher?.name}
+                                    </td>
+                                )}
+                                <td className="py-4 px-6 text-right">
+                                    {role === 'student' ? (
+                                        <button
+                                            onClick={() => navigate(`/feedback/${entry._id}`)}
+                                            className="px-4 py-1.5 bg-blue-600 text-white text-xs font-bold rounded-lg shadow-md hover:bg-blue-700 hover:scale-105 active:scale-95 transition-all"
+                                        >
+                                            Feedback
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={() => navigate(`/feedback-summary/${entry._id}`)}
+                                            className="px-4 py-1.5 bg-purple-600 text-white text-xs font-bold rounded-lg shadow-md hover:bg-purple-700 hover:scale-105 active:scale-95 transition-all"
+                                        >
+                                            Insights
+                                        </button>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

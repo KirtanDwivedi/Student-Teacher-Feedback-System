@@ -26,17 +26,28 @@ const NotificationList = () => {
     }, []);
 
     if (notifications.length === 0) {
-        return <p className="text-gray-500">No notifications.</p>;
+        return (
+            <div className="py-6 text-center">
+                <p className="text-gray-400 text-sm">Quiet for now.</p>
+            </div>
+        );
     }
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-6">
             {notifications.map((notification) => (
-                <div key={notification._id} className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-                    <p className="text-gray-800">{notification.message}</p>
-                    <div className="text-xs text-gray-500 mt-2 flex justify-between">
-                        <span>From: {notification.sender?.name}</span>
-                        <span>{new Date(notification.createdAt).toLocaleDateString()}</span>
+                <div key={notification._id} className="relative group transition-all">
+                    <div className="flex flex-col gap-2">
+                        <p className="text-gray-800 leading-relaxed font-medium">
+                            {notification.message}
+                        </p>
+                        <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                            <span className="flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
+                                {notification.sender?.name}
+                            </span>
+                            <span>{new Date(notification.createdAt).toLocaleDateString()}</span>
+                        </div>
                     </div>
                 </div>
             ))}

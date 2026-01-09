@@ -39,61 +39,78 @@ const Register = () => {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-                <h1 className="text-2xl font-bold mb-6 text-center">Register</h1>
-                <form onSubmit={submitHandler}>
-                    <div className="mb-4">
-                        <label className="block text-gray-700">Name</label>
-                        <input
-                            type="text"
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Enter name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
+        <div className="flex items-center justify-center p-4">
+            <div className="w-full max-w-lg animate-fadeUp relative z-10">
+                <div className="glass-card p-10 rounded-3xl shadow-2xl">
+                    <div className="text-center mb-10">
+                        <h1 className="text-4xl font-extrabold text-gray-900 mb-2">Create Account</h1>
+                        <p className="text-gray-500">Join our modern classroom community</p>
                     </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700">Email Address</label>
-                        <input
-                            type="email"
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Enter email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700">Password</label>
-                        <input
-                            type="password"
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Enter password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
-                    <div className="mb-6">
-                        <label className="block text-gray-700">Role</label>
-                        <select
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={role}
-                            onChange={(e) => setRole(e.target.value)}
+
+                    <form onSubmit={submitHandler} className="space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium text-gray-700 ml-1">Full Name</label>
+                                <input
+                                    type="text"
+                                    className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-50 backdrop-blur-sm transition-all outline-none"
+                                    placeholder="John Doe"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium text-gray-700 ml-1">Email</label>
+                                <input
+                                    type="email"
+                                    className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-50 backdrop-blur-sm transition-all outline-none"
+                                    placeholder="john@example.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-700 ml-1">Password</label>
+                            <input
+                                type="password"
+                                className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-50 backdrop-blur-sm transition-all outline-none"
+                                placeholder="••••••••"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-700 ml-1">Identity</label>
+                            <select
+                                className="w-full px-5 py-3 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-blue-500 bg-white bg-opacity-50 backdrop-blur-sm transition-all outline-none appearance-none"
+                                value={role}
+                                onChange={(e) => setRole(e.target.value)}
+                            >
+                                <option value="student">Student</option>
+                                <option value="teacher">Teacher</option>
+                            </select>
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="w-full py-4 bg-blue-600 text-white rounded-2xl font-semibold shadow-lg hover:bg-blue-700 hover:shadow-xl hover:-translate-y-1 active:translate-y-0 transition-all duration-300"
                         >
-                            <option value="student">Student</option>
-                            <option value="teacher">Teacher</option>
-                        </select>
+                            Get Started
+                        </button>
+                    </form>
+
+                    <div className="mt-8 text-center">
+                        <p className="text-gray-500">
+                            Already have an account? <Link to="/login" className="text-blue-600 font-semibold hover:underline">Sign In</Link>
+                        </p>
                     </div>
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
-                    >
-                        Register
-                    </button>
-                    <div className="mt-4 text-center">
-                        Already have an account? <Link to="/login" className="text-blue-500">Login</Link>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     );

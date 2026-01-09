@@ -35,21 +35,21 @@ const NotificationForm = ({ onNotificationSent }) => {
     };
 
     return (
-        <form onSubmit={submitHandler} className="mb-6">
-            <div className="flex gap-2">
-                <input
-                    type="text"
-                    className="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Type notification message..."
+        <form onSubmit={submitHandler} className="mb-8">
+            <div className="flex flex-col gap-3">
+                <textarea
+                    className="w-full px-5 py-4 rounded-2xl border-none ring-1 ring-gray-100 focus:ring-2 focus:ring-blue-500 bg-gray-50 bg-opacity-50 transition-all outline-none resize-none text-sm shadow-inner"
+                    rows="2"
+                    placeholder="Broadcast message to class..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     required
                 />
                 <button
                     type="submit"
-                    className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+                    className="w-full py-3 bg-blue-600 text-white text-sm font-bold rounded-xl shadow-lg hover:bg-blue-700 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all"
                 >
-                    Send
+                    Push Notification
                 </button>
             </div>
         </form>
