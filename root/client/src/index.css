@@ -6,6 +6,10 @@
   body {
     @apply antialiased text-gray-100 bg-slate-950;
   }
+  
+  * {
+    @apply transition-timing-function-[cubic-bezier(0.4,0,0.2,1)];
+  }
 }
 
 @layer utilities {
