@@ -32,16 +32,23 @@ const getFeedbackSummary = async (req, res) => {
         const feedbacks = await Feedback.find({ timetable: timetableId });
 
         if (!feedbacks || feedbacks.length === 0) {
-            return res.json({ summary: 'No feedback submitted yet.' });
+            return res.json({
+                summary: 'No feedback submitted yet.',
+                understoodSummary: '',
+                notUnderstoodSummary: ''
+            });
         }
 
-        const notUnderstoodTexts = feedbacks.map(f => f.notUnderstood);
+        const understoodTexts = feedbacks.map(f => f.understood).filter(t => t && t.trim().length > 0);
+        const notUnderstoodTexts = feedbacks.map(f => f.notUnderstood).filter(t => t && t.trim().length > 0);
 
-        // Use Node.js summarizer utility
-        const summary = summarizeText(notUnderstoodTexts);
+        const understoodSummary = summarizeText(understoodTexts);
+        const notUnderstoodSummary = summarizeText(notUnderstoodTexts);
 
         res.json({
-            summary,
+            summary: `Understood:\n${understoodSummary}\n\nNot Understood:\n${notUnderstoodSummary}`,
+            understoodSummary,
+            notUnderstoodSummary,
             originalFeedbacks: feedbacks
         });
 

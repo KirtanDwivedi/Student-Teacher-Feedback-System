@@ -1,8 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-
-const BASE_URL = "https://student-teacher-feedback-system.onrender.com";
+import BASE_URL from '../config';
 
 const Timetable = ({ role }) => {
     const [timetable, setTimetable] = useState([]);

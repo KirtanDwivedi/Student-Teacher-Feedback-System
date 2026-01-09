@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-const BASE_URL = "https://student-teacher-feedback-system.onrender.com";
+import BASE_URL from '../config';
 
 const NotificationList = () => {
     const [notifications, setNotifications] = useState([]);
